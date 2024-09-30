@@ -126,17 +126,44 @@ fieldset{
     position: relative;
     top: 110px;
 }
-button{
-    position: relative;
-    top: 5px;
+
+/* Mejora para las imágenes en la parte inferior */
+.buttonSet img {
+    width: 100%; /* Asegúrate de que se ajusten al tamaño del contenedor */
+    height: auto; /* Mantén la proporción de las imágenes */
+    max-width: 350px; /* Limita el tamaño máximo para evitar que se agranden demasiado */
+    margin: 10px 0;
 }
-.buttonSet{
+
+/* Ajuste general del contenedor para evitar que las imágenes se solapen */
+.buttonSet {
     position: relative;
-    top: 50px;
-    display: flex;    
-    justify-content: space-between;
-    margin: 100px;
+    top: 110px;
+    display: flex;
+    flex-wrap: wrap; /* Permite que los botones se distribuyan mejor en pantallas pequeñas */
+    justify-content: space-around;
+    margin-bottom: 20px; /* Añade espacio al final de la página */
 }
+
+/* Asegura que el contenido esté centrado y ordenado */
+#contenido-dinamico {
+    position: relative;
+    top: 110px;
+    text-align: center;
+    margin-bottom: 30px; /* Añade un margen inferior para separar las secciones */
+}
+
+/* Estilo para el contador de clics */
+#contador-clicks {
+    position: relative;
+    top: 110px;
+    text-align: center;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
 @media (min-width:1100px){
     .buttonSet{flex-direction: row;}
     
@@ -144,4 +171,17 @@ button{
 
 @media (max-width:1099px){
     .buttonSet{flex-direction: column;}
+}
+#titulo-aplicacion {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+#descripcion-aplicacion {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+#imagen-aplicacion {
+    margin-top: 15px;
 }

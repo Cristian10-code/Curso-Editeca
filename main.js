@@ -1,105 +1,194 @@
-// Clase para las aplicaciones
-class Aplicaciones {
-    constructor(name, tiempoDesarrollo, complejidad, costoApp) {
-        this.name = name;
-        this.tiempoDesarrollo = tiempoDesarrollo;
-        this.complejidad = complejidad;
-        this.costoApp = costoApp;
-    }
-}
 
-// Instancias de las aplicaciones
-let BIMStandard = new Aplicaciones("BIM Standard", 12, "Alta", 2000);
-let revisorFamilias = new Aplicaciones("Revisor Familias", 4, "Alta", 2000);
-let diccionarios = new Aplicaciones("Diccionarios", 2, "Alta", 1000);
-let multiEditor = new Aplicaciones("Multi-Editor", 8, "Baja", 500);
-let editorPlanos = new Aplicaciones("Editor de Planos", 12, "Alta", 2500);
-let editorParametros = new Aplicaciones("Editor Parámetros", 2, "Media", 1000);
-let secuenciaParametros = new Aplicaciones("Secuencia de Parámetros", 2, "Baja", 500);
+// function cambiarSeccion(seccion) {
+//     let contenido;
 
-// Mapa que guarda las aplicaciones
-const aplicaciones = new Map();
-aplicaciones.set("BIM Standard", BIMStandard);
-aplicaciones.set("Revisor Familias", revisorFamilias);
-aplicaciones.set("Diccionarios", diccionarios);
-aplicaciones.set("Multi-Editor", multiEditor);
-aplicaciones.set("Editor de Planos", editorPlanos);
-aplicaciones.set("Editor Parámetros", editorParametros);
-aplicaciones.set("Secuencia de Parámetros", secuenciaParametros);
+//     switch (seccion) {
+//         case 'BIM Standard':
+//             contenido = {
+//                 titulo: "Revisor BIM Standard",
+//                 descripcion: "Esta aplicación ayuda a verificar los estándares BIM en los proyectos.",
+//                 imagen: "/assets/RevisorBIMSTD.JPG"
+//             };
+//             break;
+//         case 'Revisor de Familias':
+//             contenido = {
+//                 titulo: "Revisor Familias",
+//                 descripcion: "Verifica la calidad y consistencia de las familias en Revit.",
+//                 imagen: "/assets/RevisorFamilias.JPG"
+//             };
+//             break;
+//         case 'Diccionarios':
+//             contenido = {
+//                 titulo: "Diccionarios",
+//                 descripcion: "Herramienta para gestionar diccionarios en Revit.",
+//                 imagen: "/assets/Diccionarios.JPG"
+//             };
+//             break;
+//         case 'Multieditor':
+//             contenido = {
+//                 titulo: "Multieditor",
+//                 descripcion: "Permite editar múltiples elementos simultáneamente.",
+//                 imagen: "/assets/Multieditor.JPG"
+//             };
+//             break;
+//         case 'Editor de Planos':
+//             contenido = {
+//                 titulo: "Editor de Planos",
+//                 descripcion: "Facilita la edición de planos en Revit.",
+//                 imagen: "/assets/EditorPlanos.JPG"
+//             };
+//             break;
+//         case 'Editor de Parámetros':
+//             contenido = {
+//                 titulo: "Editor de Parámetros",
+//                 descripcion: "Permite modificar parámetros de las familias de Revit.",
+//                 imagen: "/assets/EditorParametros.JPG"
+//             };
+//             break;
+//         case 'Secuencia de Parámetros':
+//             contenido = {
+//                 titulo: "Secuencia de Parámetros",
+//                 descripcion: "Automatiza la secuencia de parámetros en Revit.",
+//                 imagen: "/assets/SecuenciaParametros.JPG"
+//             };
+//             break;
+//         default:
+//             contenido = {
+//                 titulo: "Aplicación no encontrada",
+//                 descripcion: "Por favor selecciona una aplicación válida.",
+//                 imagen: ""
+//             };
+//     }
 
-// Función que cambia el contenido según el botón de la barra de navegación
-document.querySelectorAll('.toolbarElem').forEach((elem, index) => {
-    elem.addEventListener('click', function(event) {
-        event.preventDefault(); // Evitar la recarga de la página
-        changeContent(index); // Cambiar contenido dinámicamente
-    });
-});
+//     document.getElementById('titulo-aplicacion').innerText = contenido.titulo;
+//     document.getElementById('descripcion-aplicacion').innerText = contenido.descripcion;
+//     document.getElementById('imagen-aplicacion').src = contenido.imagen;
+// }
 
-function changeContent(index) {
-    let section = '';
-    switch (index) {
-        case 0:
-            section = 'Esta es la página de Inicio.';
+// // Función para agregar eventos a los botones utilizando un bucle for
+// function agregarEventosBotones() {
+//     const botones = document.querySelectorAll('.buttonColor');
+    
+//     // Bucle for para iterar sobre los botones
+//     for (let i = 0; i < botones.length; i++) {
+//         botones[i].addEventListener('click', function(evento) {
+//             cambiarSeccion(evento.target.innerText);
+//         });
+//     }
+// }
+
+// // Función para contar las veces que se han clickeado los botones usando un bucle while
+// function contarClicks() {
+//     let contador = 0;
+//     const maxClicks = 10;
+    
+//     // While para limitar los clicks a 10
+//     while (contador < maxClicks) {
+//         console.log(`El botón ha sido clickeado ${contador} veces.`);
+//         contador++;
+//     }
+// }
+
+// // Ejecutar la función cuando el documento esté listo
+// document.addEventListener('DOMContentLoaded', function() {
+//     agregarEventosBotones();
+//     contarClicks();  // Solo para mostrar un ejemplo de while
+// });
+
+let clickCounter = 0; // Variable global para contar los clicks
+
+// Función para cambiar el contenido según la sección seleccionada utilizando switch
+function cambiarSeccion(seccion) {
+    let contenido;
+
+    switch (seccion) {
+        case 'BIM Standard':
+            contenido = {
+                titulo: "Revisor BIM Standard",
+                descripcion: "Esta aplicación ayuda a verificar los estándares BIM en los proyectos.",
+                imagen: "/assets/RevisorBIMSTD.JPG"
+            };
             break;
-        case 1:
-            section = 'Bienvenido a mi Portafolio.';
+        case 'Revisor de Familias':
+            contenido = {
+                titulo: "Revisor Familias",
+                descripcion: "Verifica la calidad y consistencia de las familias en Revit.",
+                imagen: "/assets/RevisorFamilias.JPG"
+            };
             break;
-        case 2:
-            section = 'Conócenos en la sección de Sobre Nosotros.';
+        case 'Diccionarios':
+            contenido = {
+                titulo: "Diccionarios",
+                descripcion: "Herramienta para gestionar diccionarios en Revit.",
+                imagen: "/assets/Diccionarios.JPG"
+            };
             break;
-        case 3:
-            section = 'Contáctanos para más información.';
+        case 'Multieditor':
+            contenido = {
+                titulo: "Multieditor",
+                descripcion: "Permite editar múltiples elementos simultáneamente.",
+                imagen: "/assets/Multieditor.JPG"
+            };
+            break;
+        case 'Editor de Planos':
+            contenido = {
+                titulo: "Editor de Planos",
+                descripcion: "Facilita la edición de planos en Revit.",
+                imagen: "/assets/Editor de Planos.JPG"
+            };
+            break;
+        case 'Editor de Parámetros':
+            contenido = {
+                titulo: "Editor de Parámetros",
+                descripcion: "Permite modificar parámetros de las familias de Revit.",
+                imagen: "/assets/EditorParametros.JPG"
+            };
+            break;
+        case 'Secuencia de Parámetros':
+            contenido = {
+                titulo: "Secuencia de Parámetros",
+                descripcion: "Automatiza la secuencia de parámetros en Revit.",
+                imagen: "/assets/SecuenciaParametros.JPG"
+            };
             break;
         default:
-            section = 'Sección no encontrada.';
+            contenido = {
+                titulo: "Aplicación no encontrada",
+                descripcion: "Por favor selecciona una aplicación válida.",
+                imagen: ""
+            };
     }
-    document.getElementById('intro').innerHTML = `<p>${section}</p>`;
+
+    document.getElementById('titulo-aplicacion').innerText = contenido.titulo;
+    document.getElementById('descripcion-aplicacion').innerText = contenido.descripcion;
+    document.getElementById('imagen-aplicacion').src = contenido.imagen;
 }
 
-// Estructura de bucle para generar dinámicamente la tabla de aplicaciones
-const appsData = [
-    ["BIM Standard", "Si", "No", "No", "No", "No", "No"],
-    ["Revisor Familias", "No", "Si", "No", "No", "No", "No"],
-    ["Diccionarios", "No", "No", "Si", "No", "No", "No"],
-    ["Multi-Editor", "No", "No", "No", "Si", "No", "No"],
-    ["Editor de Planos", "No", "No", "No", "No", "Si", "No"],
-    ["Editor Parámetros", "No", "No", "No", "No", "No", "Si"],
-    ["Secuencia de Parámetros", "No", "No", "No", "No", "No", "Si"]
-];
-
-// Generar filas dinámicamente usando un bucle `for`
-function generarTabla() {
-    let tableBody = document.querySelector("tbody");
-    appsData.forEach(app => {
-        let row = "<tr>";
-        app.forEach(cell => {
-            row += `<td>${cell}</td>`;
+// Función para agregar eventos a los botones utilizando un bucle for
+function agregarEventosBotones() {
+    const botones = document.querySelectorAll('.buttonColor');
+    
+    // Bucle for para iterar sobre los botones
+    for (let i = 0; i < botones.length; i++) {
+        botones[i].addEventListener('click', function(evento) {
+            cambiarSeccion(evento.target.innerText);
+            contarClicks(); // Llamada para contar el número de clicks
         });
-        row += "</tr>";
-        tableBody.innerHTML += row;
-    });
-}
-generarTabla();
-
-// Ejemplo de estructura `if` y `while` para lógica adicional
-function calcularCostoAplicaciones() {
-    let costoTotal = 0;
-    aplicaciones.forEach((app) => {
-        if (app.costoApp > 1000) {
-            costoTotal += app.costoApp;
-        }
-    });
-
-    let contador = 0;
-    let aplicacionesCostosas = [];
-    while (contador < appsData.length) {
-        if (appsData[contador][1] === "Si") {
-            aplicacionesCostosas.push(appsData[contador][0]);
-        }
-        contador++;
     }
-
-    console.log(`El costo total de las aplicaciones costosas es: $${costoTotal}`);
-    console.log('Aplicaciones que son "Si" en Salud BIM:', aplicacionesCostosas);
 }
-calcularCostoAplicaciones();
+
+// Función para contar las veces que se han clickeado los botones
+function contarClicks() {
+    clickCounter++; // Incrementa el contador
+    document.getElementById('contador-clicks').innerText = `Clicks realizados: ${clickCounter}`;
+}
+
+// Ejecutar la función cuando el documento esté listo
+document.addEventListener('DOMContentLoaded', function() {
+    agregarEventosBotones();
+    // Inicializar el contador en la página
+    const contadorElemento = document.createElement('p');
+    contadorElemento.id = 'contador-clicks';
+    contadorElemento.innerText = 'Clicks realizados: 0';
+    document.body.appendChild(contadorElemento); // Añadir el contador al final de la página
+});
